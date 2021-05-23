@@ -1,0 +1,9 @@
+{
+	"description": "Random stuff 'n' stuff",
+	"license": "UNLICENSED",
+	"private": true,
+	"author": "Anon Ymus",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
