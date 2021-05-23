@@ -1,0 +1,5 @@
+exports.HTML508 = `
+  <html>
+    <p>FOO</p>
+  </html>
+`;

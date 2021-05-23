@@ -1,28 +1,31 @@
+const consts  = require("./Consts.js");
+const snserr  = require("./SNSErr.js");
+
 const path    = require("path");
+const ejs     = require("ejs");
 const express = require("express");
 const app     = express();
-const PORT    = 8080;
 
-const PUBLIC_DIR = path.join(__dirname, "public");
-
-app.use(express.static(PUBLIC_DIR));
+app.use(express.static(consts.PUBLIC_DIR));
 
 app.get(
 	"/",
 	(req, res) => {
-		res.sendFile(path.join(PUBLIC_DIR, "index/index.html"));
+		res.sendFile(path.join(consts.PUBLIC_DIR, "index/index.html"));
 	}
 );
 
 app.listen(
-	PORT,
+	consts.PORT,
 	() => {
-		console.log(`StuffNStuff server is up and running on port ${PORT}`);
+		console.log(`StuffNStuff server is up and running on port ${consts.PORT}`);
 	}
 );
 
-app.use(
+app.use( // No routes - assume error 404
 	(req, res) => {
-		res.status(404).sendFile(path.join(PUBLIC_DIR, "error/error.html"));
+		snserr.show_error(
+			req, res, new snserr.SNSError(404, "The server could not find the requested file.")
+		);
 	}
 );

@@ -1,10 +1,13 @@
 {
+	"name": "stuffnstuff",
 	"description": "Random stuff 'n' stuff",
+	"version": "0.0.5",
 	"license": "UNLICENSED",
 	"private": true,
 	"author": "Anon Ymus",
 	"dependencies": {
 		"ejs": "^3.1.6",
-		"express": "^4.17.1"
+		"express": "^4.17.1",
+		"http-status": "^1.5.0"
 	}
 }
