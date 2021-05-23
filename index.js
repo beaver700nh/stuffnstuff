@@ -1,29 +1,51 @@
-const http = require("http");
-const fs   = require("fs");
-const url  = require("url");
-const path = require("path");
+const path    = require("path");
+const express = require("express");
+const app     = express();
+const PORT    = 8080;
 
-const HTML_DIR = "public/";
+const PUBLIC_DIR = path.join(__dirname, "public");
 
-let server = http.createServer(
-	function (req, res) {
-		var url_query = new URL("http://example.com" + req.url);
+app.use(express.static(PUBLIC_DIR));
 
-		console.log(url_query.pathname);
-
-		if (url_query.pathname === "/") {
-		  send_file(HTML_DIR + "index/index.html", req, res, 200, "text/html");
-		}
-		else if (url_query.pathname === "/style.css") {
-			send_file(HTML_DIR + "index/style.css", req, res, 200, "text/css");
-		}
-		else {
-			//send_dir(path.join(HTML_DIR, "error"), req, res, 404, {js: null});
-			send_file(HTML_DIR + "error/error.html", req, res, 404, "text/html");
-			send_file(HTML_DIR + "error/style.css", req, res, 404, "text/css");
-		}
+app.get(
+	"/",
+	(req, res) => {
+		res.sendFile(path.join(PUBLIC_DIR, "index/index.html"));
 	}
 );
+
+app.listen(
+	PORT,
+	() => {
+		console.log(`StuffNStuff server is up and running on port ${PORT}`);
+	}
+);
+
+app.use(
+	(req, res) => {
+		res.status(404).sendFile(path.join(PUBLIC_DIR, "error/error.html"));
+	}
+);
+
+// let server = http.createServer(
+// 	function (req, res) {
+// 		var url_query = new URL("http://example.com" + req.url);
+
+// 		console.log(url_query.pathname);
+
+// 		if (url_query.pathname === "/") {
+// 		  send_file(HTML_DIR + "index/index.html", req, res, 200, "text/html");
+// 		}
+// 		else if (url_query.pathname === "/style.css") {
+// 			send_file(HTML_DIR + "index/style.css", req, res, 200, "text/css");
+// 		}
+// 		else {
+// 			//send_dir(path.join(HTML_DIR, "error"), req, res, 404, {js: null});
+// 			send_file(HTML_DIR + "error/error.html", req, res, 404, "text/html");
+// 			send_file(HTML_DIR + "error/style.css", req, res, 404, "text/css");
+// 		}
+// 	}
+// );
 
 // function send_dir(dir, req, res, status, filenames) {
 // 	const files = {
@@ -37,42 +59,41 @@ let server = http.createServer(
 // 	if (files.css  != null) send_file(files.css,  req, res, status, "text/css");
 // }
 
-function send_file(file, req, res, status, type) {
-	fs.readFile(
-		file,
-		function (err, data) {
-			if (err && (Math.floor(status / 100) != 4)) {
-				send_dir(path.join(HTML_DIR, "error"), req, res, 404);
+// function send_file(file, req, res, status, type) {
+// 	fs.readFile(
+// 		file,
+// 		function (err, data) {
+// 			if (err && (Math.floor(status / 100) != 4)) {
+// 				send_dir(path.join(HTML_DIR, "error"), req, res, 404);
 
-				return res.end();
-			}
+// 				return res.end();
+// 			}
 
-			res.writeHead(200, {"Content-Type": type || file.split(".").pop()});
-			res.write(data);
+// 			res.writeHead(200, {"Content-Type": type || file.split(".").pop()});
+// 			res.write(data);
 
-			return res.end();
-		}
-	);
-}
+// 			return res.end();
+// 		}
+// 	);
+// }
 
-function send_html(file, req, res) { // For debugging
-	fs.readFile(
-		file,
-		function (err, data) {
-			if (err) {
-				res.write("There was an error");
+// function send_html(file, req, res) { // For debugging
+// 	fs.readFile(
+// 		file,
+// 		function (err, data) {
+// 			if (err) {
+// 				res.write("There was an error");
 
-				return res.end();
-			}
+// 				return res.end();
+// 			}
 
-      res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(data);
+//       res.writeHead(200, {"Content-Type": "text/html"});
+// 			res.write(data);
 
-			return res.end();
-		}
-	);
-}
+// 			return res.end();
+// 		}
+// 	);
+// }
 
-const PORT = 8080;
-server.listen(PORT);
-console.log("Server up and running on port " + PORT);
+// server.listen(PORT);
+// console.log("Server up and running on port " + PORT);
