@@ -2,43 +2,63 @@ html {
   background-color: lightcyan;
 }
 
-div {
-  border: 1px solid black;
-}
+/* CROSS PRODUCTS */
 
-.grid-container {
-  display: grid;
-  grid-template-rows: 2;
-  grid-template-columns: 3;
-  grid-row-gap: 0px;
-  grid-column-gap: 5px;
+#xprod-grid {
+  display: inline-grid;
+  grid-template-rows: 24px 5px 24px;
+  grid-template-columns: 34px 15px 34px 100px auto;
   row-gap: 0;
   column-gap: 5px;
-  grid-template-areas: "n1 eq n2" "ln eq ln" "d1 eq d2";
 }
 
-#xprod-n1-div {
-  grid-area: n1;
+#xprod-n1-div {grid-area: 1 / 1 / 2 / 2;}
+#xprod-d1-div {grid-area: 3 / 1 / 4 / 2;}
+#xprod-n2-div {grid-area: 1 / 3 / 2 / 4;}
+#xprod-d2-div {grid-area: 3 / 3 / 4 / 4;}
+#xprod-l1-div {grid-area: 2 / 1 / 3 / 2;}
+#xprod-l2-div {grid-area: 2 / 3 / 3 / 4;}
+#xprod-eq-div {grid-area: 1 / 2 / 4 / 3;}
+
+#xprod-eq     {
+  line-height: 51px;
 }
 
-#xprod-d1-div {
-  grid-area: d1;
+#xprod-calc   {
+  grid-area: 1 / 4 / 4 / 5;
+  line-height: 51px;
+  margin-left: 15px;
 }
 
-#xprod-n2-div {
-  grid-area: n2;
+#xprod-status {
+  grid-area: 1 / 5 / 4 / 6;
+  vertical-align: middle;
+  line-height: 51px;
 }
 
-#xprod-d2-div {
-  grid-area: d2;
-}
+/* MISCELLANEOUS */
 
 .innum {
   width: 32px;
+  background-color: aquamarine;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+.innum::-webkit-inner-spin-button,
+.innum::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.frac-bar {
+  margin: 0px;
+  border-top: 2px solid black;
+}
+
+.simple-text {
+  margin: 0px;
+}
+
+button        {background-color: lightskyblue; cursor: pointer;}
+button:focus  {background-color: lightskyblue; outline: none;}
+button:hover  {background-color: lightseagreen;}
+button:active {background-color: rgb(208, 233, 255);}

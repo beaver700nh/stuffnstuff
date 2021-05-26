@@ -1,30 +1,47 @@
 <html>
-  <head>
-    <title>EquaSol - StuffNStuff</title>
-    <meta charset="utf-8" />
 
-    <link type="text/css" rel="stylesheet" href="style.css" />
-    <link type="text/css" rel="stylesheet" href="../stuffnstuff.css" />
-  </head>
-  <body>
-    <h1>EquaSol</h1>
-    <h2>A Simple Little Equation Solver</h2>
-    <p>K̶̤̞̔͘ǫ̵̛͑n̸̟͘ä̴͉̃m̶̳̐͝i̸̯̅̈́ ̵͙̰͑Ȇ̸͈̖͘a̸̛̙̱s̶̞̒t̸̯̮̆́ë̴͙͂r̸͎͍̄̐</p>
+<head>
+  <title>EquaSol - StuffNStuff</title>
+  <meta charset="utf-8" />
 
-    <p class="simlink" id="home" onclick="location.href = '/';">Home</p>
+  <link type="text/css" rel="stylesheet" href="style.css" />
+  <link type="text/css" rel="stylesheet" href="../stuffnstuff.css" />
+</head>
 
-    <div class="grid-container" id="xprod">
-      <div class="grid-item" id="xprod-n1-div">
-        <input type="number" id="xprod-n1" placeholder="N" class="innum" />
+<body>
+  <h1>EquaSol</h1>
+  <h2>A Simple Little Equation Solver</h2>
+  <p>K̶̤̞̔͘ǫ̵̛͑n̸̟͘ä̴͉̃m̶̳̐͝i̸̯̅̈́ ̵͙̰͑Ȇ̸͈̖͘a̸̛̙̱s̶̞̒t̸̯̮̆́ë̴͙͂r̸͎͍̄̐</p>
+
+  <p class="simlink" id="home" onclick="location.href = '/';">Home</p>
+
+  <div id="xprod-grid">
+    <div id="xprod-n1-div">
+      <input type="number" id="xprod-n1" placeholder="N" class="innum" />
       </div>
-      <div class="grid-item" id="xprod-d1-div">
+      <div id="xprod-l1-div">
+        <hr class="frac-bar" />
+      </div>
+      <div id="xprod-d1-div">
         <input type="number" id="xprod-d1" placeholder="D" class="innum" />
       </div>
-      <div class="grid-item" id="xprod-n2-div">
+      <div id="xprod-eq-div">
+        <span id="xprod-eq" class="simple-text">=</span>
+      </div>
+      <div id="xprod-n2-div">
         <input type="number" id="xprod-n2" placeholder="N" class="innum" />
       </div>
-      <div class="grid-item" id="xprod-d2-div">
+      <div id="xprod-l2-div">
+        <hr class="frac-bar" />
+      </div>
+      <div id="xprod-d2-div">
         <input type="number" id="xprod-d2" placeholder="D" class="innum" />
+      </div>
+      <div id="xprod-calc-div">
+        <button id="xprod-calc">Calculate</button>
+      </div>
+      <div id="xprod-status-div">
+        <span id="xprod-status"></span>
       </div>
     </div>
 

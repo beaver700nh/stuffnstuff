@@ -28,6 +28,18 @@ app.get(
 );
 
 app.get(
+  "/favicon.ico",
+  (req, res) => {
+    res.sendFile(
+      path.join(consts.PUBLIC_DIR, "index/favicon.ico"),
+      snserr.on_send_error(
+        req, res, new snserr.SNSError(500, "The server failed to find the website logo.")
+      )
+    )
+  }
+)
+
+app.get(
   "/equasol",
   (req, res) => {
     // res.sendFile(

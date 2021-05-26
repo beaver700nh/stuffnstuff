@@ -1,7 +1,7 @@
 $(document).ready(
   () => {
     $(".simlink").click(
-      function() {
+      function () {
         location.href = $(this).attr("data-link");
       }
     );
