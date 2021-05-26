@@ -1,0 +1,44 @@
+html {
+  background-color: lightcyan;
+}
+
+div {
+  border: 1px solid black;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 2;
+  grid-template-columns: 3;
+  grid-row-gap: 0px;
+  grid-column-gap: 5px;
+  row-gap: 0;
+  column-gap: 5px;
+  grid-template-areas: "n1 eq n2" "ln eq ln" "d1 eq d2";
+}
+
+#xprod-n1-div {
+  grid-area: n1;
+}
+
+#xprod-d1-div {
+  grid-area: d1;
+}
+
+#xprod-n2-div {
+  grid-area: n2;
+}
+
+#xprod-d2-div {
+  grid-area: d2;
+}
+
+.innum {
+  width: 32px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

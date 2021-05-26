@@ -1,11 +1,3 @@
 html {
   background-color: lightgoldenrodyellow;
 }
-
-.simlink:hover {
-  text-decoration: underline;
-}
-
-.simlink {
-  cursor: pointer;
-}

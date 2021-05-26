@@ -1,7 +1,0 @@
-html {
-	font-family: "Verdana", sans-serif;
-}
-
-h1 {
-	margin-bottom: 5px;
-}

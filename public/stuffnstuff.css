@@ -1,3 +1,11 @@
 html {
   font-family: "Verdana", sans-serif;
 }
+
+.simlink:hover {
+  text-decoration: underline;
+}
+
+.simlink {
+  cursor: pointer;
+}

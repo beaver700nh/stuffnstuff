@@ -1,8 +1,8 @@
 $(document).ready(
   () => {
-    $("#equasol").click(
-      () => {
-        location.href = "../equasol";
+    $(".simlink").click(
+      function() {
+        location.href = $(this).attr("data-link");
       }
     );
   }

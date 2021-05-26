@@ -30,14 +30,26 @@ app.get(
 app.get(
   "/equasol",
   (req, res) => {
-    res.sendFile(
-      path.join(consts.PUBLIC_DIR, "equasol/equasol.html"),
-      snserr.on_send_error(
-        req, res, new snserr.SNSError(500, "The server failed to find EquaSol.")
-      )
+    // res.sendFile(
+    //   path.join(consts.PUBLIC_DIR, "equasol/equasol.html"),
+    //   snserr.on_send_error(
+    //     req, res, new snserr.SNSError(500, "The server failed to find EquaSol.")
+    //   )
+    // );
+    snserr.show_error(
+      req, res, new snserr.SNSError(200, "This is EquaSol.")
     );
   }
 );
+
+app.get(
+  "/error/:estat-:emsg",
+  (req, res) => {
+    snserr.show_error(
+      req, res, new snserr.SNSError(req.params.estat, req.params.emsg)
+    );
+  }
+)
 
 app.listen(
   consts.PORT,
@@ -48,8 +60,6 @@ app.listen(
 
 app.use( // No routes - assume error 404
   (req, res) => {
-    snserr.show_error(
-      req, res, new snserr.SNSError(404, "The server could not find the requested file.")
-    );
+    return res.redirect("/error/404-The%20server%20could%20not%20find%20the%20requested%20file%2E")
   }
 );
