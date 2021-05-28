@@ -9,8 +9,26 @@ $(document).ready(
           parseInt($("#xprod-d2").val()),
         ];
 
-        if (check("10110", [1, NaN, 2, 3, NaN])) {
-          alert("SIMPLIFY!");
+        if (check("0011", values)) {
+          alert("SIMPLIFY 1!");
+        }
+        else if (check("0111", values)) {
+          alert("FILL 1!");
+        }
+        else if (check("1011", values)) {
+          alert("FILL 2!");
+        }
+        else if (check("1100", values)) {
+          alert("SIMPLIFY 2!");
+        }
+        else if (check("1101", values)) {
+          alert("FILL 3!");
+        }
+        else if (check("1110", values)) {
+          alert("FILL 4!");
+        }
+        else if (check("1111", values)) {
+          alert("ALREADY SOLVED!");
         }
         else {
           $("#xprod-status").text("Error: not enough information.");
@@ -18,10 +36,9 @@ $(document).ready(
 
         function check(pat, vec) {
           for (let i in (pat.length < vec.length ? pat : vec)) {
-            alert(i);
             if (
-              (vec[i] === NaN && pat[i] === "1") ||
-              (vec[i] !== NaN && pat[i] === "0")
+              ( Object.is(vec[i], NaN) && pat[i] === "1") ||
+              (!Object.is(vec[i], NaN) && pat[i] === "0")
             ) {
               return false;
             }
