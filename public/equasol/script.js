@@ -10,7 +10,17 @@ $(document).ready(
         ];
 
         if (check("0011", values)) {
-          alert("SIMPLIFY 1!");
+          if (gcf(values[2], values[3]) === 1) {
+            $("#xprod-status").text("Error: fraction is already in simplest form.");
+          }
+          else {
+            let [n, d] = XPROD.simplify(values[2], values[3]);
+
+            $("#xprod-n1").val(n);
+            $("#xprod-d1").val(d);
+
+            $("#xprod-status").text("Success: fraction has been simplified.");
+          }
         }
         else if (check("0111", values)) {
           alert("FILL 1!");
@@ -19,7 +29,17 @@ $(document).ready(
           alert("FILL 2!");
         }
         else if (check("1100", values)) {
-          alert("SIMPLIFY 2!");
+          if (gcf(values[0], values[1]) === 1) {
+            $("#xprod-status").text("Error: fraction is already in simplest form.");
+          }
+          else {
+            let [n, d] = XPROD.simplify(values[0], values[1]);
+
+            $("#xprod-n2").val(n);
+            $("#xprod-d2").val(d);
+
+            $("#xprod-status").text("Success: fraction has been simplified.");
+          }
         }
         else if (check("1101", values)) {
           alert("FILL 3!");
@@ -28,7 +48,7 @@ $(document).ready(
           alert("FILL 4!");
         }
         else if (check("1111", values)) {
-          alert("ALREADY SOLVED!");
+          $("#xprod-status").text("Error: proportion is already solved.");
         }
         else {
           $("#xprod-status").text("Error: not enough information.");
@@ -37,7 +57,7 @@ $(document).ready(
         function check(pat, vec) {
           for (let i in (pat.length < vec.length ? pat : vec)) {
             if (
-              ( Object.is(vec[i], NaN) && pat[i] === "1") ||
+              (Object.is(vec[i], NaN) && pat[i] === "1") ||
               (!Object.is(vec[i], NaN) && pat[i] === "0")
             ) {
               return false;

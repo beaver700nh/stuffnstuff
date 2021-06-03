@@ -10,7 +10,7 @@ app.use(express.static(consts.PUBLIC_DIR));
 
 app.use(
   (req, res, next) => {
-    console.log(`GOT A REQUEST for url ${req.url}`);
+    console.log(`Got a ${req.method} request for url ${req.url}`);
     next();
   }
 );
@@ -42,17 +42,35 @@ app.get(
 app.get(
   "/equasol",
   (req, res) => {
-    // res.sendFile(
-    //   path.join(consts.PUBLIC_DIR, "equasol/equasol.html"),
-    //   snserr.on_send_error(
-    //     req, res, new snserr.SNSError(500, "The server failed to find EquaSol.")
-    //   )
-    // );
-    snserr.show_error(
-      req, res, new snserr.SNSError(200, "This is EquaSol.")
+    res.sendFile(
+      path.join(consts.PUBLIC_DIR, "equasol/equasol.html"),
+      snserr.on_send_error(
+        req, res, new snserr.SNSError(500, "The server failed to find EquaSol.")
+      )
     );
   }
 );
+
+app.get(
+  "/rpl",
+  (req, res) => {
+    res.sendFile(
+      path.join(consts.PUBLIC_DIR, "rpl/index.html"),
+      snserr.on_send_error(
+        req, res, new snserr.SNSError(500, "The server failed to find RPL.")
+      )
+    );
+  }
+);
+
+app.get(
+  "/foo",
+  (req, res) => {
+    snserr.show_error(
+      req, res, new snserr.SNSError(200, "Task failed successfully.")
+    );
+  }
+)
 
 app.get(
   "/error/:estat-:emsg",
