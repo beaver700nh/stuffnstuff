@@ -7,7 +7,7 @@ html {
 #xprod-grid {
   display: inline-grid;
   grid-template-rows: 24px 5px 24px;
-  grid-template-columns: 34px 15px 34px 100px auto;
+  grid-template-columns: 34px 15px 34px 100px 60px auto;
   row-gap: 0;
   column-gap: 5px;
 }
@@ -20,18 +20,24 @@ html {
 #xprod-l2-div {grid-area: 2 / 3 / 3 / 4;}
 #xprod-eq-div {grid-area: 1 / 2 / 4 / 3;}
 
-#xprod-eq     {
+#xprod-eq {
   line-height: 51px;
 }
 
-#xprod-calc   {
+#xprod-calc {
   grid-area: 1 / 4 / 4 / 5;
   line-height: 51px;
   margin-left: 15px;
 }
 
-#xprod-status {
+#xprod-clear {
   grid-area: 1 / 5 / 4 / 6;
+  line-height: 51px;
+  margin-left: 5px;
+}
+
+#xprod-status {
+  grid-area: 1 / 6 / 4 / 7;
   vertical-align: middle;
   line-height: 51px;
 }
