@@ -14,7 +14,7 @@ $(document).ready(
             $("#xprod-status").text("Error: fraction is already in simplest form.");
           }
           else {
-            let [n, d] = XPROD.simplify(values[2], values[3]);
+            let [n, d] = XPROD.simplify_frac(values[2], values[3]);
 
             $("#xprod-n1").val(n);
             $("#xprod-d1").val(d);
@@ -33,7 +33,7 @@ $(document).ready(
             $("#xprod-status").text("Error: fraction is already in simplest form.");
           }
           else {
-            let [n, d] = XPROD.simplify(values[0], values[1]);
+            let [n, d] = XPROD.simplify_frac(values[0], values[1]);
 
             $("#xprod-n2").val(n);
             $("#xprod-d2").val(d);
@@ -57,7 +57,7 @@ $(document).ready(
         function check(pat, vec) {
           for (let i in (pat.length < vec.length ? pat : vec)) {
             if (
-              (Object.is(vec[i], NaN) && pat[i] === "1") ||
+              ( Object.is(vec[i], NaN) && pat[i] === "1") ||
               (!Object.is(vec[i], NaN) && pat[i] === "0")
             ) {
               return false;
