@@ -34,6 +34,7 @@ class XPROD {
   }
 
   static clear() {
+    $("#xprod-status").text("");
     $("#xprod-n1").val("");
     $("#xprod-d1").val("");
     $("#xprod-n2").val("");
