@@ -1,10 +1,12 @@
 KONAMI = 0;
+IN_GAME = false;
+GAME = new_game();
 
 class EASTER {
   static easteregg(event) {
     let key = event.which;
 
-    // Order: ^rrow, lower, UPPER
+    // Order: ^rrow, UPPER, lower
 
     if (
       (KONAMI === 0  && key === 38)  || // \
@@ -57,14 +59,99 @@ class EASTER {
       KONAMI = 0;
 
       $("#easter-egg").html(
-        '<img src="images/easteregg.jpg" alt="YOU FOUND THE EASTER EGG!!!" onclick="EASTER.eastergame();" />'
+        '<img src="images/easteregg.jpg" alt="YOU FOUND THE EASTER EGG!!!" onclick="EASTER.start_game();" />'
       );
     }
 
     return false;
   }
 
-  static eastergame() {
-    alert("Easter egg game coming soon!");
+  static start_game() {
+    $("title").html("Press Space");
+
+    setTimeout(
+      () => {
+        $("title").html("$: Good, #: Bad");
+      },
+      2000
+    );
+
+    $(document).keydown(
+      function (event) {
+        let key = event.which;
+
+        if (key === 32) {
+          IN_GAME = !IN_GAME;
+
+          if (IN_GAME) {
+            $("title").html("MoneyFilter (Press W)");
+            setTimeout(EASTER.tick, 2000);
+          }
+          else {
+            $("title").html("EquaSol - StuffNStuff");
+            clearTimeout(GAME.timeout);
+            GAME = new_game();
+          }
+        }
+      }
+    );
+  }
+
+  static play_game(event) {
+    if (!IN_GAME) {
+      return false;
+    }
+
+    let key = event.which;
+
+    if (key === 38 || key === 87 || key === 119) {
+      GAME.mode = (GAME.mode === "X" ? "O" : "X");
+    }
+
+    return false;
+  }
+
+  static tick() {
+    if (!IN_GAME) {
+      return;
+    }
+
+    let just_in = GAME.tiles[0];
+
+    if (GAME.mode === "O") {
+      if (just_in === "$") {
+        if (++GAME.score === 100) {
+          $("title").html("YOU WIN!!!");
+          return;
+        }
+      }
+      else if (just_in === "#") {
+        $("title").html("You ate trash! :(");
+        return;
+      }
+    }
+    else if (GAME.mode === "X" && just_in === "$") {
+      if (--GAME.score < -10) {
+        $("title").html("You went bankrupt. :(");
+        return;
+      }
+    }
+
+    GAME.tiles = GAME.tiles.slice(1);
+    GAME.tiles += ["$", "\xa0", "#"][Math.floor(Math.random() * 3)];
+    GAME.board = `[${GAME.score} | ${GAME.mode}${GAME.tiles}]`;
+
+    $("title").html(GAME.board);
+
+    GAME.timeout = setTimeout(EASTER.tick, 1000);
   }
 }
+
+function new_game() {
+  return {
+    score: 0,
+    mode: "X",
+    tiles: "\xa0".repeat(10) + "$",
+    timeout: 1,
+  };
+};
